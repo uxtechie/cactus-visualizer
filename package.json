@@ -4,19 +4,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "standard",
-    "lint:fix": "standard --fix"
+    "lint": "ts-standard",
+    "lint:fix": "ts-standard --fix"
   },
   "dependencies": {
-    "firebase": "^9.6.1",
+    "firebase": "9.20.0",
     "next": "latest",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.4",
-    "tailwindcss": "^3.0.0",
-    "standard": "^17.0.0"
+    "@types/node": "18.15.12",
+    "@types/react": "18.0.37",
+    "@types/react-dom": "18.0.11",
+    "autoprefixer": "10.4.14",
+    "postcss": "8.4.23",
+    "tailwindcss": "3.3.1",
+    "ts-standard": "12.0.2",
+    "typescript": "5.0.4"
+  },
+  "ts-standard": {
+    "project": "./tsconfig.json"
   }
 }
