@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from 'react'
+import Image from 'next/image'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
 import { PointModel, getPointList } from '@Models/point'
 import { MaterialModel, getMaterialList } from '@Models/material'
-
+import baseImage from '@Images/base.jpeg'
 const Home: FC = () => {
   const [pointList, setPointList] = useState<PointModel[]>([])
   const [materialList, setMaterialList] = useState<MaterialModel[]>([])
@@ -24,7 +25,11 @@ const Home: FC = () => {
 
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
-      ESTUDIO CACTUS VISUALIZER TEST
+      <Image
+        src={baseImage}
+        alt='Modern kitchen'
+        priority
+      />
     </div>
   )
 }

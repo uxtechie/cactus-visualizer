@@ -24,7 +24,9 @@
       "@Layout/*": ["src/shared/layout/*"],
       "@Styles/*": ["src/styles/*"],
       "@Services/*": ["src/services/*"],
-      "@Constants/*": ["src/shared/constants/*"]
+      "@Constants/*": ["src/shared/constants/*"],
+      "@Images/*": ["src/assets/images/*"],
+      "@Icons/*": ["src/assets/icons/*"]
     }
   },
   "include": [
