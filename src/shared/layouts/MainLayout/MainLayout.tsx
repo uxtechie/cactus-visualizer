@@ -6,17 +6,17 @@ export interface MainLayoutProps {
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children, sideBar, leftSection }) => {
   return (
-    <main className='flex'>
+    <section className='flex'>
       <section className='flex-initial w-80'>
         {leftSection}
       </section>
-      <article className='flex-1'>
+      <main className='flex-1'>
         {children}
-      </article>
+      </main>
       <aside className='flex-initial w-80'>
         {sideBar}
       </aside>
-    </main>
+    </section>
   )
 }
 
