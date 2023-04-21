@@ -1,4 +1,5 @@
 
 export enum AppErrorMessage {
-  PointsFailed = 'Get points failed',
+  GetPointsFailed = 'Get points failed',
+  GetMaterialsFailed = 'Get materials failed',
 }

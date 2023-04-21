@@ -1,18 +1,25 @@
 import { FC, useEffect, useState } from 'react'
-import { getPointList } from '@Services/firebaseClient'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
+import { PointModel, getPointList } from '@Models/point'
+import { MaterialModel, getMaterialList } from '@Models/material'
 
 const Home: FC = () => {
-  const [pointList, setPointList] = useState({})
+  const [pointList, setPointList] = useState<PointModel[]>([])
+  const [materialList, setMaterialList] = useState<MaterialModel[]>([])
   const [error, setError] = useState<AppErrorMessage | null>(null)
 
   useEffect(() => {
     getPointList()
       .then((points) => setPointList(points))
-      .catch(() => setError(AppErrorMessage.PointsFailed))
+      .catch(() => setError(AppErrorMessage.GetPointsFailed))
+
+    getMaterialList()
+      .then((materials) => setMaterialList(materials))
+      .catch(() => setError(AppErrorMessage.GetMaterialsFailed))
   }, [])
 
   console.log('points', pointList)
+  console.log('materials', materialList)
   console.log('error', error)
 
   return (
