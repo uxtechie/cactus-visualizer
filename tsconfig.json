@@ -26,7 +26,8 @@
       "@Services/*": ["src/services/*"],
       "@Constants/*": ["src/shared/constants/*"],
       "@Images/*": ["src/assets/images/*"],
-      "@Icons/*": ["src/assets/icons/*"]
+      "@Icons/*": ["src/assets/icons/*"],
+      "@Types": ["src/shared/types.ts"]
     }
   },
   "include": [
