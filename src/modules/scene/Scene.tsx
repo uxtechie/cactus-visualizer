@@ -4,12 +4,15 @@ import baseImage from '@Images/base.jpeg'
 import { PointModel, getPointList } from '@Models/point'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
 import { TouchButton } from './components/TouchButton'
+import { GenericItemHandler } from '@Types'
+import { MaterialModel } from '@Models/material'
 
 export interface SceneProps {
-  children?: React.ReactNode
+  selectedPointHandler: GenericItemHandler<PointModel>
+  selectedMaterial?: MaterialModel
 }
 
-const Scene: FC<SceneProps> = () => {
+const Scene: FC<SceneProps> = ({ selectedPointHandler, selectedMaterial }) => {
   const [pointList, setPointList] = useState<PointModel[]>([])
   const [error, setError] = useState<AppErrorMessage | null>(null)
 
@@ -32,9 +35,7 @@ const Scene: FC<SceneProps> = () => {
       {pointList.map((point, index) => (
         <TouchButton
           key={index}
-          point={point} onClickHandler={(point: PointModel) => {
-            console.log(point.name)
-          }}
+          point={point} onClickHandler={selectedPointHandler}
         />
       ))}
     </article>

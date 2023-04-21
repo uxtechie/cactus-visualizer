@@ -1,8 +1,15 @@
-import { FC, useEffect, useState } from 'react'
+import { PointModel } from '@Models/point'
+import { FC, useState, useEffect } from 'react'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
 import { MaterialModel, getMaterialList } from '@Models/material'
-import { Scene } from 'src/modules/scene'
-const Home: FC = () => {
+import { Scene } from 'src/modules/Scene'
+import { MaterialsPaginator } from 'src/modules/MaterialsPaginator'
+import MainLayout, { MainLayoutProps } from 'src/shared/layouts/MainLayout/MainLayout'
+
+const Home: FC<MainLayoutProps> = () => {
+  const [selectedPoint, setSelectedPoint] = useState<PointModel | undefined>()
+  const [selectedMaterial, setSelectedMaterial] = useState<MaterialModel | undefined>()
+
   const [materialList, setMaterialList] = useState<MaterialModel[]>([])
   const [error, setError] = useState<AppErrorMessage | null>(null)
 
@@ -16,9 +23,16 @@ const Home: FC = () => {
   console.log('error', error)
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen py-2'>
-      <Scene />
-    </div>
+    <MainLayout
+      sideBar={<MaterialsPaginator
+        selectedPoint={selectedPoint}
+        selectedMaterial={selectedMaterial}
+        selectedMaterialHandler={setSelectedMaterial}
+        materialList={materialList}
+               />}
+    >
+      <Scene selectedPointHandler={setSelectedPoint} selectedMaterial={selectedMaterial} />
+    </MainLayout>
   )
 }
 
