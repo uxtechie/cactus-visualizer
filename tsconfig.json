@@ -18,10 +18,13 @@
     "paths": {
       "@Pages/*": ["src/pages/*"],
       "@Components/*": ["src/shared/components/*"],
+      "@Hooks/*": ["src/shared/hooks/*"],
       "@Models/*": ["src/shared/models/*"],
       "@Utils/*": ["src/shared/utils/*"],
       "@Layout/*": ["src/shared/layout/*"],
-      "@Styles/*": ["src/styles/*"]
+      "@Styles/*": ["src/styles/*"],
+      "@Services/*": ["src/services/*"],
+      "@Constants/*": ["src/shared/constants/*"]
     }
   },
   "include": [
