@@ -32,8 +32,8 @@ const Scene: FC<SceneProps> = () => {
       {pointList.map((point, index) => (
         <TouchButton
           key={index}
-          point={point} onClickHandler={(pointId: string) => {
-            console.log(pointId)
+          point={point} onClickHandler={(point: PointModel) => {
+            console.log(point.name)
           }}
         />
       ))}

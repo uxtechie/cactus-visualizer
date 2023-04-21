@@ -1,2 +1,2 @@
 export type GenericVoidHandler = () => void
-export type GenericIdHandler = (id: string) => void
+export type GenericItemHandler<T> = (item: T) => void
