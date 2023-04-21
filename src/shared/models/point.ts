@@ -1,5 +1,5 @@
 import { firebaseDb } from '@Services/firebaseClient'
-import { collection, query, getDocs } from 'firebase/firestore'
+import { collection, query, getDocs, Query } from 'firebase/firestore'
 
 export interface PointModel {
   id: string
@@ -10,12 +10,11 @@ export interface PointModel {
 
 const pointsRef = collection(firebaseDb, 'points')
 
-const pointsQuery = query(pointsRef)
-
 export const getPointList = async (): Promise<PointModel[]> => {
+  const pointsQuery = query(pointsRef) as Query<PointModel>
   const pointList: PointModel[] = []
 
-  const pointsSnapshot = await getDocs(pointsQuery)
+  const pointsSnapshot = await getDocs<PointModel>(pointsQuery)
 
   pointsSnapshot.forEach((point) => {
     const pointData = point.data() as Omit<PointModel, 'id'>

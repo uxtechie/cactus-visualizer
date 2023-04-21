@@ -1,5 +1,5 @@
 import { firebaseDb } from '@Services/firebaseClient'
-import { collection, query, getDocs } from 'firebase/firestore'
+import { collection, query, getDocs, Query, orderBy } from 'firebase/firestore'
 
 export interface MaterialModel {
   id: string
@@ -11,12 +11,11 @@ export interface MaterialModel {
 
 const materialsRef = collection(firebaseDb, 'materials')
 
-const materialsQuery = query(materialsRef)
-
 export const getMaterialList = async (): Promise<MaterialModel[]> => {
+  const materialsQuery = query(materialsRef, orderBy('name')) as Query<MaterialModel>
   const materialList: MaterialModel[] = []
 
-  const materialsSnapshot = await getDocs(materialsQuery)
+  const materialsSnapshot = await getDocs<MaterialModel>(materialsQuery)
 
   materialsSnapshot.forEach((material) => {
     const materialData = material.data() as Omit<MaterialModel, 'id'>
