@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "ts-standard",
+    "lint": "tsc --project tsconfig.json && ts-standard",
     "lint:fix": "ts-standard --fix"
   },
   "dependencies": {
