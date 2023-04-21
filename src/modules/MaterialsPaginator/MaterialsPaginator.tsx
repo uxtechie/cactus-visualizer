@@ -24,7 +24,7 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
 }) => {
   const [currentPage, setCurrentPage] = useState(1)
 
-  const selectedPointMaterials = (selectedPoint != null)
+  const selectedPointMaterials = (selectedPoint !== undefined)
     ? materialList.filter(
       (material) => material.points.includes(selectedPoint.id)
     )

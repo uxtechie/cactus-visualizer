@@ -11,7 +11,7 @@ const Home: FC<MainLayoutProps> = () => {
   const [selectedMaterial, setSelectedMaterial] = useState<MaterialModel | undefined>()
 
   const [materialList, setMaterialList] = useState<MaterialModel[]>([])
-  const [error, setError] = useState<AppErrorMessage | null>(null)
+  const [error, setError] = useState<AppErrorMessage>()
 
   useEffect(() => {
     getMaterialList()
@@ -31,7 +31,11 @@ const Home: FC<MainLayoutProps> = () => {
         materialList={materialList}
                />}
     >
-      <Scene selectedPointHandler={setSelectedPoint} selectedMaterial={selectedMaterial} />
+      <Scene
+        selectedPointHandler={setSelectedPoint}
+        selectedMaterial={selectedMaterial}
+        selectedPoint={selectedPoint}
+      />
     </MainLayout>
   )
 }
