@@ -5,12 +5,14 @@ import { MaterialModel, getMaterialList } from '@Models/material'
 import { Scene } from 'src/modules/Scene'
 import { MaterialsPaginator } from 'src/modules/MaterialsPaginator'
 import MainLayout, { MainLayoutProps } from 'src/shared/layouts/MainLayout/MainLayout'
+import { PointMaterialProxy } from '@Types'
 
 const Home: FC<MainLayoutProps> = () => {
-  const [selectedPoint, setSelectedPoint] = useState<PointModel | undefined>()
-  const [selectedMaterial, setSelectedMaterial] = useState<MaterialModel | undefined>()
+  const [selectedPoint, setSelectedPoint] = useState<PointModel>()
 
   const [materialList, setMaterialList] = useState<MaterialModel[]>([])
+  const [pointMaterialProxy, setPointMaterialProxy] = useState<PointMaterialProxy>({})
+
   const [error, setError] = useState<AppErrorMessage>()
 
   useEffect(() => {
@@ -19,22 +21,29 @@ const Home: FC<MainLayoutProps> = () => {
       .catch(() => setError(AppErrorMessage.GetMaterialsFailed))
   }, [])
 
-  console.log('materials', materialList)
-  console.log('error', error)
+  const selectMaterialHandler = (material: MaterialModel): void => {
+    if (selectedPoint === undefined) {
+      throw new Error('No point selected')
+    }
+
+    setPointMaterialProxy({
+      ...pointMaterialProxy,
+      [selectedPoint.id]: { material }
+    })
+  }
 
   return (
     <MainLayout
       sideBar={<MaterialsPaginator
         selectedPoint={selectedPoint}
-        selectedMaterial={selectedMaterial}
-        selectedMaterialHandler={setSelectedMaterial}
+        selectMaterialHandler={selectMaterialHandler}
         materialList={materialList}
                />}
     >
       <Scene
-        selectedPointHandler={setSelectedPoint}
-        selectedMaterial={selectedMaterial}
+        selectPointHandler={setSelectedPoint}
         selectedPoint={selectedPoint}
+        pointMaterialProxy={pointMaterialProxy}
       />
     </MainLayout>
   )

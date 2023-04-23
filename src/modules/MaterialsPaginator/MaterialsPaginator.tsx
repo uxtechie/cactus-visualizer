@@ -4,25 +4,27 @@ import { PointModel } from '@Models/point'
 import { IconArrowUp } from '@Icons/IconArrowUp'
 import { IconArrowDown } from '@Icons/IconArrowDown'
 import { MaterialCard } from './components/MaterialCard'
+import { DEFAULT_PAGE_SIZE } from 'src/appConfig'
 import { GenericItemHandler } from '@Types'
-import { DEFAULT_PAGE_SIZE } from '@Constants/appConfig'
 
 interface MaterialsPaginatorProps {
   pageSize?: number
   selectedPoint?: PointModel
-  selectedMaterial?: MaterialModel
   materialList: MaterialModel[]
-  selectedMaterialHandler: GenericItemHandler<MaterialModel>
+  selectMaterialHandler: GenericItemHandler<MaterialModel>
 }
+
+const INITIAL_PAGE = 1
 
 const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   pageSize = DEFAULT_PAGE_SIZE,
   selectedPoint,
   materialList,
-  selectedMaterial,
-  selectedMaterialHandler
+  selectMaterialHandler
 }) => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(INITIAL_PAGE)
+
+  const [selectedMaterial, setSelectedMaterial] = useState<MaterialModel>()
 
   const selectedPointMaterials = (selectedPoint !== undefined)
     ? materialList.filter(
@@ -33,6 +35,12 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   const materialsToShow = selectedPointMaterials.slice(
     (currentPage - 1) * pageSize
   )
+
+  const onMaterialClick = (material: MaterialModel): void => {
+    selectMaterialHandler(material)
+    setSelectedMaterial(material)
+  }
+
   return (
     <nav className=''>
       <IconArrowUp
@@ -45,7 +53,7 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
       />
       {materialsToShow.map((material, index) => <MaterialCard
         key={index} material={material}
-        onClickHandler={selectedMaterialHandler}
+        onClickHandler={onMaterialClick}
         selected={material.id === selectedMaterial?.id}
                                                 />
       )}
