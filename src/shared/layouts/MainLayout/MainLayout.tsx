@@ -1,22 +1,38 @@
 export interface MainLayoutProps {
   children: React.ReactNode
   sideBar?: React.ReactNode
-  leftSection?: React.ReactNode
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children, sideBar, leftSection }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({ children, sideBar }) => {
+
+  // calibrated aspect ratio between main section and fullcontent
+  // to improve responsiveness
+  const contentAspectRatio = 'aspect-[17/9]'
+  const mainSectionAspectRatio = 'aspect-[13/9.15]'
+
   return (
-    <section className='flex'>
-      <section className='flex-initial w-80'>
-        {leftSection}
+    <div
+      id='main-layout-blur-effect'
+      className='flex h-screen w-screen overflow-hidden backdrop-blur-xl'
+    >
+      <section
+        id='main-layout-content'
+        className={`flex h-fit w-full ${contentAspectRatio} place-self-center m-x-auto md:container`}
+      >
+        <main
+          id='main-layout-main-section'
+          className={`w-full relative ${mainSectionAspectRatio}`}
+        >
+          {children}
+        </main>
+        <aside
+          id='main-layout-sidebar'
+          className='w-full'
+        >
+          {sideBar}
+        </aside>
       </section>
-      <main className='flex-1'>
-        {children}
-      </main>
-      <aside className='flex-initial w-80'>
-        {sideBar}
-      </aside>
-    </section>
+    </div>
   )
 }
 
