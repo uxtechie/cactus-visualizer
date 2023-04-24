@@ -40,6 +40,7 @@ const Home: FC<MainLayoutProps> = () => {
       sideBar={<MaterialsPaginator
         selectedPoint={selectedPoint}
         selectMaterialHandler={selectMaterialHandler}
+        pointMaterialProxy={pointMaterialProxy}
         materialList={materialList}
                />}
     >
