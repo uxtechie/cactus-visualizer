@@ -1,11 +1,10 @@
 import { FC, useState } from 'react'
 import { MaterialModel } from '@Models/material'
 import { PointModel } from '@Models/point'
-import { IconArrowUp } from '@Icons/IconArrowUp'
-import { IconArrowDown } from '@Icons/IconArrowDown'
 import { MaterialCard } from './components/MaterialCard'
 import { DEFAULT_PAGE_SIZE } from 'src/appConfig'
 import { GenericItemHandler } from '@Types'
+import { Button } from '@Components/Button'
 
 interface MaterialsPaginatorProps {
   pageSize?: number
@@ -42,28 +41,30 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   }
 
   return (
-    <nav className=''>
-      <IconArrowUp
-        style={{
-          pointerEvents: currentPage === 1 ? 'none' : 'auto'
-        }}
+    <nav className='flex flex-col w-full h-full place-content-around items-end text-neutral-100 pr-2'>
+      <Button
+        icon='arrowUp'
         onClick={() => {
           setCurrentPage(currentPage - 1)
         }}
+        disabled={currentPage === 1}
       />
-      {materialsToShow.map((material, index) => <MaterialCard
-        key={index} material={material}
-        onClickHandler={onMaterialClick}
-        selected={material.id === selectedMaterial?.id}
-                                                />
-      )}
-      <IconArrowDown
-        style={{
-          pointerEvents: currentPage >= selectedPointMaterials.length / pageSize ? 'none' : 'auto'
-        }}
+
+      <ul className='flex w-full flex-col items-end space-y-3 pl-3'>
+        {materialsToShow.map((material, index) => <MaterialCard
+          key={index} material={material}
+          onClickHandler={onMaterialClick}
+          selected={material.id === selectedMaterial?.id}
+                                                  />
+        )}
+      </ul>
+
+      <Button
+        icon='arrowDown'
         onClick={() => {
           setCurrentPage(currentPage + 1)
         }}
+        disabled={currentPage >= selectedPointMaterials.length / pageSize}
       />
     </nav>
   )
