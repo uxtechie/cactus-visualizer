@@ -1,4 +1,5 @@
-import { PaginateProps } from './types'
+import { ComparatorReturnValues } from './enums'
+import { ComparatorFn, PaginateProps } from './types'
 
 export const paginate = <T>(
   { itemList, pageSize, currentPage }: PaginateProps<T>
@@ -8,4 +9,14 @@ export const paginate = <T>(
   }
 
   return itemList.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+}
+
+export const compareObjects = <T>(propName: keyof T): ComparatorFn<T> => {
+  const comparator: ComparatorFn<T> = (first, second) => {
+    if (first[propName] < second[propName]) { return ComparatorReturnValues.LESS_THAN }
+    if (first[propName] > second[propName]) { return ComparatorReturnValues.GREATER_THAN }
+
+    return ComparatorReturnValues.EQUAL
+  }
+  return comparator
 }

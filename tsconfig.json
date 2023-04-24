@@ -20,7 +20,7 @@
       "@Components/*": ["src/shared/components/*"],
       "@Hooks/*": ["src/shared/hooks/*"],
       "@Models/*": ["src/shared/models/*"],
-      "@Utils/*": ["src/shared/utils/*"],
+      "@Utils/*": ["src/lib/utils/*"],
       "@Layout/*": ["src/shared/layout/*"],
       "@Styles/*": ["src/styles/*"],
       "@Services/*": ["src/services/*"],
