@@ -17,6 +17,8 @@ const MaterialLayers: React.FC<MaterialLayersProps> = ({ material, setLoadingPoi
       key={`${index}-layer`}
       className='absolute top-0 left-0'
       src={currentLayerUrl}
+      // optimize image performance:
+      sizes='(max-width: 1280px) 100vw, 80vw'
       fill
       style={{
         objectFit: 'contain'

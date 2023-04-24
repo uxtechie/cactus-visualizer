@@ -30,6 +30,8 @@ const Scene: FC<SceneProps> = ({ selectPointHandler, selectedPoint, setLoadingPo
         src='/base.jpeg'
         alt='Modern kitchen'
         priority
+        // optimize image performance:
+        sizes='(max-width: 1280px) 100vw, 80vw'
         fill
         style={{
           objectFit: 'contain'
