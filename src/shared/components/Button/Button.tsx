@@ -31,7 +31,7 @@ const Button: FC<ButtonProps> = ({ onClick, disabled = false, size = 'md', icon 
       onClick={onClick}
       disabled={disabled}
     >
-      {(IconComponent != null) && <IconComponent height='auto' width='auto' />}
+      {(IconComponent != null) && <IconComponent height='100%' width='100%' />}
     </button>
   )
 }
