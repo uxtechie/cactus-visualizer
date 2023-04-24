@@ -4,24 +4,34 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "tsc --project tsconfig.json && ts-standard",
-    "lint:fix": "ts-standard --fix"
+    "lint:types": "tsc --project tsconfig.json",
+    "lint": "ts-standard",
+    "lint:fix": "ts-standard --fix",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
+    "postinstall": "pnpm audit"
   },
   "dependencies": {
-    "firebase": "9.20.0",
+    "firebase": "9.20.X",
     "next": "latest",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "18.2.X",
+    "react-dom": "18.2.X"
   },
   "devDependencies": {
-    "@types/node": "18.15.12",
-    "@types/react": "18.0.37",
-    "@types/react-dom": "18.0.11",
-    "autoprefixer": "10.4.14",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.1",
+    "@types/node": "18.15.X",
+    "@types/react": "18.0.X",
+    "@types/react-dom": "18.0.X",
+    "autoprefixer": "10.4.X",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
     "postcss": "8.4.23",
-    "tailwindcss": "3.3.1",
-    "ts-standard": "12.0.2",
-    "typescript": "5.0.4"
+    "sass": "1.62.X",
+    "tailwindcss": "3.3.X",
+    "ts-standard": "12.0.X",
+    "typescript": "5.0.X"
   },
   "ts-standard": {
     "project": "./tsconfig.json"
