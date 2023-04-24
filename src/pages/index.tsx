@@ -9,6 +9,7 @@ import { PointMaterialProxy } from '@Types'
 
 const Home: FC<MainLayoutProps> = () => {
   const [selectedPoint, setSelectedPoint] = useState<PointModel>()
+  const [loadingPoint, setLoadingPoint] = useState(false)
 
   const [materialList, setMaterialList] = useState<MaterialModel[]>([])
   const [pointMaterialProxy, setPointMaterialProxy] = useState<PointMaterialProxy>({})
@@ -28,8 +29,10 @@ const Home: FC<MainLayoutProps> = () => {
 
     setPointMaterialProxy({
       ...pointMaterialProxy,
-      [selectedPoint.id]: { material }
+      [selectedPoint.id]: material
     })
+
+    setLoadingPoint(true)
   }
 
   return (
@@ -43,6 +46,8 @@ const Home: FC<MainLayoutProps> = () => {
       <Scene
         selectPointHandler={setSelectedPoint}
         selectedPoint={selectedPoint}
+        loadingPoint={loadingPoint}
+        setLoadingPoint={setLoadingPoint}
         pointMaterialProxy={pointMaterialProxy}
       />
     </MainLayout>

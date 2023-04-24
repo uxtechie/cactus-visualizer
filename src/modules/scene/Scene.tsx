@@ -1,18 +1,20 @@
-import { FC, useEffect, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { PointModel, getPointList } from '@Models/point'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
 import { TouchButton } from './components/TouchButton'
 import { GenericItemHandler, PointMaterialProxy } from '@Types'
-import { PointMaterialLayers } from './components/PointMaterialLayers'
+import { MaterialLayers } from './components/MaterialLayers'
 
 export interface SceneProps {
   selectPointHandler: GenericItemHandler<PointModel>
   selectedPoint?: PointModel
+  loadingPoint?: boolean
+  setLoadingPoint: Dispatch<SetStateAction<boolean>>
   pointMaterialProxy: PointMaterialProxy
 }
 
-const Scene: FC<SceneProps> = ({ selectPointHandler, selectedPoint, pointMaterialProxy }) => {
+const Scene: FC<SceneProps> = ({ selectPointHandler, selectedPoint, setLoadingPoint, pointMaterialProxy, loadingPoint = false }) => {
   const [pointList, setPointList] = useState<PointModel[]>([])
   const [error, setError] = useState<AppErrorMessage>()
 
@@ -34,16 +36,19 @@ const Scene: FC<SceneProps> = ({ selectPointHandler, selectedPoint, pointMateria
         }}
       />
 
-      {Object.values(pointMaterialProxy).map((materialLayers, index) => (
-        <PointMaterialLayers
-          key={`${index}-${materialLayers.materialName}`}
-          {...materialLayers}
+      {Object.values(pointMaterialProxy).map((material, index) => (
+        <MaterialLayers
+          key={`${index}-${material.name}`}
+          material={material}
+          setLoadingPoint={setLoadingPoint}
         />))}
 
       {pointList.map((point, index) => (
         <TouchButton
           key={index}
-          point={point} onClickHandler={selectPointHandler}
+          point={point}
+          loading={loadingPoint && selectedPoint !== undefined && selectedPoint.id === point.id}
+          onClickHandler={selectPointHandler}
         />
       ))}
     </>

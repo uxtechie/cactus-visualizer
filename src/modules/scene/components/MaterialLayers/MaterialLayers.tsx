@@ -1,11 +1,13 @@
+import { Dispatch, SetStateAction } from 'react'
 import { MaterialModel } from '@Models/material'
 import Image from 'next/image'
 
-export interface PointMaterialLayersProps {
+export interface MaterialLayersProps {
   material: MaterialModel
+  setLoadingPoint: Dispatch<SetStateAction<boolean>>
 }
 
-const PointMaterialLayers: React.FC<PointMaterialLayersProps> = ({ material }) => {
+const MaterialLayers: React.FC<MaterialLayersProps> = ({ material, setLoadingPoint }) => {
   const { layers, name } = material
 
   return (
@@ -20,10 +22,11 @@ const PointMaterialLayers: React.FC<PointMaterialLayersProps> = ({ material }) =
         objectFit: 'contain'
       }}
       alt={`${name} material - layer ${index}`}
+      onLoadingComplete={() => setLoadingPoint(false)}
                                                            />))
   }
     </>
   )
 }
 
-export default PointMaterialLayers
+export default MaterialLayers

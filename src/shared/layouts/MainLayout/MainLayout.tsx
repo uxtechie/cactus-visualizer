@@ -1,11 +1,12 @@
+import { ReactNode, FC } from "react"
+
 export interface MainLayoutProps {
-  children: React.ReactNode
-  sideBar?: React.ReactNode
+  children: ReactNode
+  sideBar?: ReactNode
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children, sideBar }) => {
-
-  // calibrated aspect ratio between main section and fullcontent
+const MainLayout: FC<MainLayoutProps> = ({ children, sideBar }) => {
+  // calibrated aspect ratio between main section and full content
   // to improve responsiveness
   const contentAspectRatio = 'aspect-[17/9]'
   const mainSectionAspectRatio = 'aspect-[13/9.15]'
