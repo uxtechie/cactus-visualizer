@@ -43,15 +43,11 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
       .catch(() => setError(AppErrorMessage.GetMaterialsFailed))
   }, [selectedPoint])
 
-  console.log('currentPage II', currentPage)
-
   const currentPageMaterialList = paginate({
     itemList: materialList,
     pageSize,
     currentPage
   })
-
-  console.log('currentPageMaterials', currentPageMaterialList)
 
   const previousPageAvailable = currentPage > 1
 

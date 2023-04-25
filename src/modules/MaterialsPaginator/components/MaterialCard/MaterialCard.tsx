@@ -15,7 +15,7 @@ const MaterialCard: FC<MaterialCardProps> = (
   const { materialPreview, name } = material
 
   // FIXME
-  console.log('coupled states, to many material renders')
+  // coupled states, to many material renders
 
   return (
     <li className={`flex flex-1 ${selected ? 'w-full' : 'w-fit'} border-2 bg-neutral-100 border-neutral-100 rounded-[5px]`}>
