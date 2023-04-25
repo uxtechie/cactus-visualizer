@@ -1,4 +1,4 @@
-import { firebaseDb } from '@Services/firebaseClient'
+import { insecuredFirebaseDb } from '@Services/firebaseClient'
 import { collection, query, getDocs, Query } from 'firebase/firestore'
 
 export interface PointModel {
@@ -8,7 +8,7 @@ export interface PointModel {
   name: string
 }
 
-const pointsRef = collection(firebaseDb, 'points')
+const pointsRef = collection(insecuredFirebaseDb, 'points')
 
 export const getPointList = async (): Promise<PointModel[]> => {
   const pointsQuery = query(pointsRef) as Query<PointModel>

@@ -1,4 +1,4 @@
-import { firebaseDb } from '@Services/firebaseClient'
+import { insecuredFirebaseDb } from '@Services/firebaseClient'
 import { collection, query, getDocs, Query, where } from 'firebase/firestore'
 
 export interface MaterialModel {
@@ -9,7 +9,7 @@ export interface MaterialModel {
   points: string[]
 }
 
-const materialsRef = collection(firebaseDb, 'materials')
+const materialsRef = collection(insecuredFirebaseDb, 'materials')
 
 export const getMaterialList = async (pointId: string): Promise<MaterialModel[]> => {
   const materialsQuery = query(
