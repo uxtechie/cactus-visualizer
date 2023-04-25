@@ -23,7 +23,7 @@ const config = {
     '^@Images/(.*)$': '<rootDir>/src/assets/images/$1',
     '^@Icons/(.*)$': '<rootDir>/src/assets/icons/$1',
     '^@Types': '<rootDir>/src/shared/types.ts',
-    '^@Root/(.*)$': '<rootDir>/$1'
+    '^@/(.*)$': '<rootDir>/$1'
   }
 }
 

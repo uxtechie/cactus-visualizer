@@ -29,7 +29,8 @@
       "@Images/*": ["./src/assets/images/*"],
       "@Icons/*": ["./src/assets/icons/*"],
       "@Types": ["./src/shared/types.ts"],
-      "@Root/*": ["./*"]
+      "@": ["./"],
+      "@/*": ["./*"]
     }
   },
   "include": [
