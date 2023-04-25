@@ -21,11 +21,11 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   pageSize = DEFAULT_PAGE_SIZE,
   selectedPoint
 }) => {
-  const [materialList, setMaterialList] = useState<MaterialModel[]>([])
-  const [fetchMaterialsError, setError] = useState<AppErrorMessage | undefined>()
-
   const { pointMaterialProxy, setPointMaterialProxy } = useContext(PointMaterialProxyContext)
   const { setLoadingPoint } = useContext(LoadingPointContext)
+
+  const [materialList, setMaterialList] = useState<MaterialModel[]>([])
+  const [fetchMaterialsError, setError] = useState<AppErrorMessage | undefined>()
 
   useEffect(() => {
     if (selectedPoint === undefined) {
@@ -36,16 +36,13 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
       .then((materialList) => {
         const sortedMaterials = materialList.sort(compareObjectsBy('name'))
         setMaterialList(sortedMaterials)
+        setCurrentPage(_getInitialPage(pointMaterialProxy, materialList, pageSize, selectedPoint))
       })
       .catch(() => setError(AppErrorMessage.GetMaterialsFailed))
   }, [selectedPoint])
 
   const [currentPage, setCurrentPage] = useState(_getInitialPage(
     pointMaterialProxy, materialList, pageSize, selectedPoint))
-
-  useEffect(() => {
-    setCurrentPage(_getInitialPage(pointMaterialProxy, materialList, pageSize, selectedPoint))
-  }, [selectedPoint])
 
   const currentPageMaterialItems = paginate({
     itemList: materialList,
