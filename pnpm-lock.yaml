@@ -1,5 +1,8 @@
 lockfileVersion: '6.0'
 
+overrides:
+  yaml: npm:yaml@2.2.2
+
 dependencies:
   firebase:
     specifier: 9.20.X
@@ -16,13 +19,16 @@ dependencies:
 
 devDependencies:
   '@testing-library/jest-dom':
-    specifier: ^5.16.5
+    specifier: 5.16.X
     version: 5.16.5
   '@testing-library/react':
-    specifier: ^14.0.0
+    specifier: 14.0.X
     version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
+  '@testing-library/user-event':
+    specifier: 14.4.X
+    version: 14.4.3(@testing-library/dom@9.2.0)
   '@types/jest':
-    specifier: ^29.5.1
+    specifier: 29.5.X
     version: 29.5.1
   '@types/node':
     specifier: 18.15.X
@@ -33,14 +39,17 @@ devDependencies:
   '@types/react-dom':
     specifier: 18.0.X
     version: 18.0.0
+  '@types/testing-library__jest-dom':
+    specifier: 5.14.X
+    version: 5.14.5
   autoprefixer:
     specifier: 10.4.X
     version: 10.4.0(postcss@8.4.23)
   jest:
-    specifier: ^29.5.0
+    specifier: 29.5.X
     version: 29.5.0(@types/node@18.15.0)
   jest-environment-jsdom:
-    specifier: ^29.5.0
+    specifier: 29.5.X
     version: 29.5.0
   postcss:
     specifier: 8.4.23
@@ -1397,6 +1406,15 @@ packages:
       '@types/react-dom': 18.0.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: true
+
+  /@testing-library/user-event@14.4.3(@testing-library/dom@9.2.0):
+    resolution: {integrity: sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      '@testing-library/dom': '>=7.21.4'
+    dependencies:
+      '@testing-library/dom': 9.2.0
     dev: true
 
   /@tootallnate/once@2.0.0:
@@ -4607,7 +4625,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.23
-      yaml: 1.10.2
+      yaml: 2.2.2
     dev: true
 
   /postcss-nested@6.0.0(postcss@8.4.23):
@@ -5585,9 +5603,9 @@ packages:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
 
-  /yaml@1.10.2:
-    resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
-    engines: {node: '>= 6'}
+  /yaml@2.2.2:
+    resolution: {integrity: sha512-CBKFWExMn46Foo4cldiChEzn7S7SRV+wqiluAb6xmueD/fGyRHIhX8m14vVGgeFWjN540nKCNVj6P21eQjgTuA==}
+    engines: {node: '>= 14'}
     dev: true
 
   /yargs-parser@20.2.9:
