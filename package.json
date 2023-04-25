@@ -16,7 +16,8 @@
     "firebase": "9.20.X",
     "next": "latest",
     "react": "18.2.X",
-    "react-dom": "18.2.X"
+    "react-dom": "18.2.X",
+    "sharp": "0.32.X"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.16.X",
