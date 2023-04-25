@@ -26,7 +26,8 @@ const TouchButton: FC<TouchButtonProps> = ({ point, onClickHandler, loading = fa
       <span className={`
         ${loading ? 'animate-bounce' : ''}
         relative w-full h-full flex items-center justify-center
-      `}>
+      `}
+      >
         <span
           className='absolute w-full h-full rounded-full outline bg-neutral-800 outline-neutral-800 opacity-40'
         />

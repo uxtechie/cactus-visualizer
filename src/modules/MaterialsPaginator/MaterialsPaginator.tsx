@@ -5,7 +5,7 @@ import { MaterialCard } from './components/MaterialCard'
 import { DEFAULT_PAGE_SIZE } from '@/src/appConfig'
 import { PointMaterialProxy } from '@Types'
 import { Button } from '@Components/Button'
-import { paginate, compareObjectsBy } from '@Utils/collection'
+import { paginate, compareObjectsBy, arrayMoveElement } from '@Utils/collection'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
 import { PointMaterialProxyContext } from '@Contexts/PointMaterialProxyContext'
 import { LoadingPointContext } from '@Contexts/LoadingPointContext'
@@ -37,8 +37,10 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
     getMaterialList(selectedPoint.id)
       .then((materialList) => {
         const sortedMaterials = materialList.sort(compareObjectsBy('name'))
+
+        _moveSelectedMaterialFirst(pointMaterialProxy, sortedMaterials, selectedPoint)
+        setCurrentPage(DEFAULT_INITIAL_PAGE)
         setMaterialList(sortedMaterials)
-        setCurrentPage(_getInitialPage(pointMaterialProxy, materialList, pageSize, selectedPoint))
       })
       .catch(() => setError(AppErrorMessage.GetMaterialsFailed))
   }, [selectedPoint])
@@ -86,7 +88,7 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
             selected={
             material.id === _getSelectedMaterialId(pointMaterialProxy, selectedPoint)
           }
-                                                             />
+                                                            />
           )}
         </ul>
 
@@ -104,16 +106,15 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
 export default MaterialsPaginator
 
 // private helpers
-const _getInitialPage = (
+const _moveSelectedMaterialFirst = (
   pointMaterialProxy: PointMaterialProxy,
   materialList: MaterialModel[],
-  pageSize: number,
   selectedPoint?: PointModel
-): number => {
+): void => {
   const selectedMaterialId = _getSelectedMaterialId(pointMaterialProxy, selectedPoint)
 
   if (selectedMaterialId === undefined) {
-    return DEFAULT_INITIAL_PAGE
+    return
   }
 
   const selectedMaterialIndex = materialList.findIndex(
@@ -121,10 +122,14 @@ const _getInitialPage = (
   )
 
   if (selectedMaterialIndex === -1) {
-    return DEFAULT_INITIAL_PAGE
+    return
   }
 
-  return Math.floor(selectedMaterialIndex + 1 / pageSize)
+  arrayMoveElement({
+    source: materialList,
+    fromIndex: selectedMaterialIndex,
+    toIndex: 0
+  })
 }
 
 const _getSelectedMaterialId = (
