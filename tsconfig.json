@@ -18,6 +18,8 @@
     "paths": {
       "@Pages/*": ["src/pages/*"],
       "@Components/*": ["src/shared/components/*"],
+      "@Layouts/*": ["src/shared/layouts/*"],
+      "@Modules/*": ["src/modules/*"],
       "@Hooks/*": ["src/shared/hooks/*"],
       "@Models/*": ["src/shared/models/*"],
       "@Utils/*": ["src/lib/utils/*"],
@@ -27,7 +29,8 @@
       "@Constants/*": ["src/shared/constants/*"],
       "@Images/*": ["src/assets/images/*"],
       "@Icons/*": ["src/assets/icons/*"],
-      "@Types": ["src/shared/types.ts"]
+      "@Types": ["src/shared/types.ts"],
+      "@Root/*": ["*"]
     }
   },
   "include": [
