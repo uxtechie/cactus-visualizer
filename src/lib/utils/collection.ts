@@ -11,7 +11,7 @@ export const paginate = <T>(
   return itemList.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 }
 
-export const compareObjects = <T>(propName: keyof T): ComparatorFn<T> => {
+export const compareObjectsBy = <T>(propName: keyof T): ComparatorFn<T> => {
   const comparator: ComparatorFn<T> = (first, second) => {
     if (first[propName] < second[propName]) { return ComparatorReturnValues.LESS_THAN }
     if (first[propName] > second[propName]) { return ComparatorReturnValues.GREATER_THAN }
