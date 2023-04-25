@@ -5,10 +5,10 @@ import { MaterialCard } from './components/MaterialCard'
 import { DEFAULT_PAGE_SIZE } from '@/src/appConfig'
 import { PointMaterialProxy } from '@Types'
 import { Button } from '@Components/Button'
-import { paginate } from '@Utils/collection'
-import { compareObjectsBy } from '@Utils/collection'
+import { paginate, compareObjectsBy } from '@Utils/collection'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
-import { PointMaterialContext } from '@/src/shared/contexts/PointMaterialContext'
+import { PointMaterialProxyContext } from '@Contexts/PointMaterialProxyContext'
+import { LoadingPointContext } from '@Contexts/LoadingPointContext'
 
 interface MaterialsPaginatorProps {
   pageSize?: number
@@ -19,12 +19,13 @@ const DEFAULT_INITIAL_PAGE = 1
 
 const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   pageSize = DEFAULT_PAGE_SIZE,
-  selectedPoint,
+  selectedPoint
 }) => {
   const [materialList, setMaterialList] = useState<MaterialModel[]>([])
   const [fetchMaterialsError, setError] = useState<AppErrorMessage | undefined>()
 
-  const {pointMaterialProxy, setPointMaterialProxy} = useContext(PointMaterialContext)
+  const { pointMaterialProxy, setPointMaterialProxy } = useContext(PointMaterialProxyContext)
+  const { setLoadingPoint } = useContext(LoadingPointContext)
 
   useEffect(() => {
     if (selectedPoint === undefined) {
@@ -56,10 +57,12 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
 
   const nextPageAvailable = currentPage < Math.ceil(materialList.length / pageSize)
 
-  const selectMaterialHandler = (material: MaterialModel) => {
+  const selectMaterialHandler = (material: MaterialModel): void => {
     if (selectedPoint === undefined) {
-      throw new Error('missing selectedPoint')
+      throw new Error('No point selected')
     }
+
+    setLoadingPoint(true)
 
     setPointMaterialProxy({
       ...pointMaterialProxy,
@@ -67,39 +70,39 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
     })
   }
 
-  return fetchMaterialsError ?
-    <p>{`error message: ${fetchMaterialsError}`}</p>
-   : (
-    <nav className='flex flex-col w-full h-full place-content-around items-end text-neutral-500 pr-2'>
-      <Button
-        icon='arrowUp'
-        onClick={() => {
-          setCurrentPage(currentPage - 1)
-        }}
-        disabled={!previousPageAvailable}
-        pulse={previousPageAvailable}
-      />
+  return fetchMaterialsError
+    ? <p>{`error message: ${fetchMaterialsError}`}</p>
+    : (
+      <nav className='flex flex-col w-full h-full place-content-around items-end text-neutral-500 pr-2'>
+        <Button
+          icon='arrowUp'
+          onClick={() => {
+            setCurrentPage(currentPage - 1)
+          }}
+          disabled={!previousPageAvailable}
+          pulse={previousPageAvailable}
+        />
 
-      <ul className='flex w-full flex-col items-end space-y-3 pl-3'>
-        {currentPageMaterialItems.map((material, index) => <MaterialCard
-          key={index} material={material}
-          onClickHandler={selectMaterialHandler}
-          selected={
+        <ul className='flex w-full flex-col items-end space-y-3 pl-3'>
+          {currentPageMaterialItems.map((material, index) => <MaterialCard
+            key={index} material={material}
+            onClickHandler={selectMaterialHandler}
+            selected={
             material.id === _getSelectedMaterialId(pointMaterialProxy, selectedPoint)
           }
-                                                           />
-        )}
-      </ul>
+                                                             />
+          )}
+        </ul>
 
-      <Button
-        icon='arrowDown'
-        onClick={() => {
-          setCurrentPage(currentPage + 1)
-        }}
-        disabled={!nextPageAvailable}
-      />
-    </nav>
-  )
+        <Button
+          icon='arrowDown'
+          onClick={() => {
+            setCurrentPage(currentPage + 1)
+          }}
+          disabled={!nextPageAvailable}
+        />
+      </nav>
+      )
 }
 
 export default MaterialsPaginator

@@ -1,19 +1,28 @@
 import { FC, useState } from 'react'
 import type { AppProps } from 'next/app'
 import '@Styles/globals.css'
-import { PointMaterialContext } from '../shared/contexts/PointMaterialContext'
+import { PointMaterialProxyContext } from '@Contexts/PointMaterialProxyContext'
 import { PointMaterialProxy } from '@Types'
+import { LoadingPointContext } from '@Contexts/LoadingPointContext'
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
-  const [pointMaterialProxy, setPointMaterialProxy] = useState<PointMaterialProxy>({});
+  const [pointMaterialProxy, setPointMaterialProxy] = useState<PointMaterialProxy>({})
+  const [loadingPoint, setLoadingPoint] = useState(false)
 
   return (
-    <PointMaterialContext.Provider value={{
+    <PointMaterialProxyContext.Provider value={{
       pointMaterialProxy,
       setPointMaterialProxy
-    }}>
-      <Component {...pageProps} />
-    </PointMaterialContext.Provider>
+    }}
+    >
+      <LoadingPointContext.Provider value={{
+        loadingPoint,
+        setLoadingPoint
+      }}
+      >
+        <Component {...pageProps} />
+      </LoadingPointContext.Provider>
+    </PointMaterialProxyContext.Provider>
   )
 }
 

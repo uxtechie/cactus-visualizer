@@ -1,13 +1,15 @@
-import { Dispatch, SetStateAction } from 'react'
-import { MaterialModel } from '@Models/material'
+import { useContext } from 'react'
 import Image from 'next/image'
+import { LoadingPointContext } from '@Contexts/LoadingPointContext'
+import { MaterialModel } from '@Models/material'
 
 export interface MaterialLayersProps {
   material: MaterialModel
-  setLoadingPoint: Dispatch<SetStateAction<boolean>>
 }
 
-const MaterialLayers: React.FC<MaterialLayersProps> = ({ material, setLoadingPoint }) => {
+const MaterialLayers: React.FC<MaterialLayersProps> = ({ material }) => {
+  const { setLoadingPoint } = useContext(LoadingPointContext)
+
   const { layers, name } = material
 
   return (

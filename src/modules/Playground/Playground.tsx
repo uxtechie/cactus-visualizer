@@ -1,23 +1,23 @@
-import { Dispatch, FC, SetStateAction, useContext } from 'react'
+import { FC, useContext } from 'react'
 import Image from 'next/image'
 import { PointModel } from '@Models/point'
 import { TouchButton } from './components/TouchButton'
-import { GenericItemHandler, PointMaterialProxy } from '@Types'
+import { GenericItemHandler } from '@Types'
 import { MaterialLayers } from './components/MaterialLayers'
-import { PointMaterialContext } from '@/src/shared/contexts/PointMaterialContext'
+import { PointMaterialProxyContext } from '@Contexts/PointMaterialProxyContext'
+import { LoadingPointContext } from '@Contexts/LoadingPointContext'
 
 export interface PlaygroundProps {
   selectPointHandler: GenericItemHandler<PointModel>
   selectedPoint?: PointModel
-  loadingPoint?: boolean
-  setLoadingPoint: Dispatch<SetStateAction<boolean>>
   pointList: PointModel[]
 }
 
 const Playground: FC<PlaygroundProps> = (
-  { pointList, selectPointHandler, selectedPoint, setLoadingPoint, loadingPoint = false }
+  { pointList, selectPointHandler, selectedPoint }
 ) => {
-  const {pointMaterialProxy, setPointMaterialProxy} = useContext(PointMaterialContext)
+  const { pointMaterialProxy } = useContext(PointMaterialProxyContext)
+  const { loadingPoint } = useContext(LoadingPointContext)
 
   return (
     <>
@@ -37,7 +37,6 @@ const Playground: FC<PlaygroundProps> = (
         <MaterialLayers
           key={`${index}-${material.name}`}
           material={material}
-          setLoadingPoint={setLoadingPoint}
         />))}
 
       {pointList.map((point, index) => (

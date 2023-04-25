@@ -20,6 +20,7 @@
       "@Components/*": ["./src/shared/components/*"],
       "@Layouts/*": ["./src/shared/layouts/*"],
       "@Modules/*": ["./src/modules/*"],
+      "@Contexts/*": ["./src/shared/contexts/*"],
       "@Hooks/*": ["./src/shared/hooks/*"],
       "@Models/*": ["./src/shared/models/*"],
       "@Utils/*": ["./src/lib/utils/*"],
