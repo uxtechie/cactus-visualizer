@@ -1,16 +1,17 @@
 import { FC, useState, useEffect } from 'react'
-import { MaterialModel } from '@Models/material'
 import { PointModel } from '@Models/point'
+import { MaterialModel, getMaterialList } from '@Models/material'
 import { MaterialCard } from './components/MaterialCard'
 import { DEFAULT_PAGE_SIZE } from '@/src/appConfig'
 import { GenericItemHandler, PointMaterialProxy } from '@Types'
 import { Button } from '@Components/Button'
 import { paginate } from '@Utils/collection'
+import { compareObjectsBy } from '@Utils/collection'
+import { AppErrorMessage } from '@Constants/AppErrorMessage'
 
 interface MaterialsPaginatorProps {
   pageSize?: number
   selectedPoint?: PointModel
-  materialList: MaterialModel[]
   pointMaterialProxy: PointMaterialProxy
   selectMaterialHandler: GenericItemHandler<MaterialModel>
 }
@@ -20,10 +21,25 @@ const DEFAULT_INITIAL_PAGE = 1
 const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   pageSize = DEFAULT_PAGE_SIZE,
   selectedPoint,
-  materialList,
   selectMaterialHandler,
   pointMaterialProxy
 }) => {
+  const [materialList, setMaterialList] = useState<MaterialModel[]>([])
+  const [fetchMaterialsError, setError] = useState<AppErrorMessage | undefined>()
+
+  useEffect(() => {
+    if (selectedPoint === undefined) {
+      return
+    }
+
+    getMaterialList(selectedPoint.id)
+      .then((materialList) => {
+        const sortedMaterials = materialList.sort(compareObjectsBy('name'))
+        setMaterialList(sortedMaterials)
+      })
+      .catch(() => setError(AppErrorMessage.GetMaterialsFailed))
+  }, [selectedPoint])
+
   const [currentPage, setCurrentPage] = useState(_getInitialPage(
     pointMaterialProxy, materialList, pageSize, selectedPoint))
 
@@ -41,7 +57,9 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
 
   const nextPageAvailable = currentPage < Math.ceil(materialList.length / pageSize)
 
-  return (
+  return fetchMaterialsError ?
+    <p>{`error message: ${fetchMaterialsError}`}</p>
+   : (
     <nav className='flex flex-col w-full h-full place-content-around items-end text-neutral-500 pr-2'>
       <Button
         icon='arrowUp'

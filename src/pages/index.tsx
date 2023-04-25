@@ -1,40 +1,23 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState } from 'react'
 import { GetStaticProps } from 'next'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
 import { PointModel, getPointList } from '@Models/point'
-import { MaterialModel, getMaterialList } from '@Models/material'
+import { MaterialModel } from '@Models/material'
 import { MainLayout } from '@Layouts/MainLayout'
 import { MaterialsPaginator } from '@Modules/MaterialsPaginator'
 import { PointMaterialProxy } from '@Types'
-import { compareObjectsBy } from '@Utils/collection'
 import { Playground } from '@Modules/Playground'
 
 interface HomeStaticProps {
   pointList: PointModel[]
-  error?: AppErrorMessage
+  fetchPointsError?: AppErrorMessage
 }
 
-const Home: FC<HomeStaticProps> = ({ pointList, error: pointError }) => {
+const Home: FC<HomeStaticProps> = ({ pointList, fetchPointsError }) => {
   const [selectedPoint, setSelectedPoint] = useState<PointModel>()
   const [loadingPoint, setLoadingPoint] = useState(false)
 
-  const [materialList, setMaterialList] = useState<MaterialModel[]>([])
   const [pointMaterialProxy, setPointMaterialProxy] = useState<PointMaterialProxy>({})
-
-  const [error, setError] = useState<AppErrorMessage | undefined>(pointError)
-
-  useEffect(() => {
-    if (selectedPoint === undefined) {
-      return
-    }
-
-    getMaterialList(selectedPoint.id)
-      .then((materialList) => {
-        const sortedMaterials = materialList.sort(compareObjectsBy('name'))
-        setMaterialList(sortedMaterials)
-      })
-      .catch(() => setError(AppErrorMessage.GetMaterialsFailed))
-  }, [selectedPoint])
 
   const selectMaterialHandler = (material: MaterialModel): void => {
     if (selectedPoint === undefined) {
@@ -49,15 +32,14 @@ const Home: FC<HomeStaticProps> = ({ pointList, error: pointError }) => {
     setLoadingPoint(true)
   }
 
-  return error
-    ? <p>{`error message: ${error}`}</p>
+  return fetchPointsError
+    ? <p>{`error message: ${fetchPointsError}`}</p>
     : (
       <MainLayout
         sideBar={<MaterialsPaginator
           selectedPoint={selectedPoint}
           selectMaterialHandler={selectMaterialHandler}
           pointMaterialProxy={pointMaterialProxy}
-          materialList={materialList}
                  />}
       >
         <Playground
@@ -80,7 +62,7 @@ export const getStaticProps: GetStaticProps<HomeStaticProps> = async (context) =
   try {
     props.pointList = await getPointList()
   } catch (error) {
-    props.error = AppErrorMessage.GetPointsFailed
+    props.fetchPointsError = AppErrorMessage.GetPointsFailed
   }
 
   return { props, revalidate: 100 }
