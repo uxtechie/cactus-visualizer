@@ -1,7 +1,6 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 import Image from 'next/image'
-import { PointModel, getPointList } from '@Models/point'
-import { AppErrorMessage } from '@Constants/AppErrorMessage'
+import { PointModel } from '@Models/point'
 import { TouchButton } from './components/TouchButton'
 import { GenericItemHandler, PointMaterialProxy } from '@Types'
 import { MaterialLayers } from './components/MaterialLayers'
@@ -12,18 +11,12 @@ export interface SceneProps {
   loadingPoint?: boolean
   setLoadingPoint: Dispatch<SetStateAction<boolean>>
   pointMaterialProxy: PointMaterialProxy
+  pointList: PointModel[]
 }
 
-const Scene: FC<SceneProps> = ({ selectPointHandler, selectedPoint, setLoadingPoint, pointMaterialProxy, loadingPoint = false }) => {
-  const [pointList, setPointList] = useState<PointModel[]>([])
-  const [error, setError] = useState<AppErrorMessage>()
-
-  useEffect(() => {
-    getPointList()
-      .then((points) => setPointList(points))
-      .catch(() => setError(AppErrorMessage.GetPointsFailed))
-  }, [])
-
+const Scene: FC<SceneProps> = (
+  { pointList, selectPointHandler, selectedPoint, setLoadingPoint, pointMaterialProxy, loadingPoint = false }
+) => {
   return (
     <>
       <Image
