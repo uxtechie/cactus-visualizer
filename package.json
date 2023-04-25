@@ -6,12 +6,11 @@
     "start": "next start",
     "lint:types": "tsc --project tsconfig.json",
     "lint": "ts-standard",
+    "lint:audit": "pnpm audit",
     "lint:fix": "ts-standard --fix",
     "test:unit": "jest",
     "test:unit:ci": "jest --ci",
-    "test:unit:watch": "jest --watch",
-    "preinstall": "npx only-allow pnpm",
-    "postinstall": "pnpm audit"
+    "test:unit:watch": "jest --watch"
   },
   "dependencies": {
     "firebase": "9.20.X",
@@ -46,7 +45,7 @@
     "project": "./tsconfig.json"
   },
   "engines": {
-    "node": "18.16.0",
+    "node": "18.x",
     "pnpm": "8.3.0"
   }
 }
