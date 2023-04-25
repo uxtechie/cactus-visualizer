@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <div
+    class="flex h-screen w-screen overflow-hidden backdrop-blur-xl"
+    id="main-layout-blur-effect"
+  >
+    <section
+      class="flex h-fit w-full aspect-[17/9] place-self-center m-x-auto md:container"
+      id="main-layout-content"
+    >
+      <main
+        class="w-full relative aspect-[13/9.15]"
+        id="main-layout-main-section"
+      >
+        <img
+          alt="Modern kitchen"
+          data-nimg="fill"
+          decoding="async"
+          fetchpriority="high"
+          sizes="(max-width: 1280px) 100vw, 80vw"
+          src="/_next/image?url=%2Fbase.jpeg&w=3840&q=75"
+          srcset="/_next/image?url=%2Fbase.jpeg&w=640&q=75 640w, /_next/image?url=%2Fbase.jpeg&w=750&q=75 750w, /_next/image?url=%2Fbase.jpeg&w=828&q=75 828w, /_next/image?url=%2Fbase.jpeg&w=1080&q=75 1080w, /_next/image?url=%2Fbase.jpeg&w=1200&q=75 1200w, /_next/image?url=%2Fbase.jpeg&w=1920&q=75 1920w, /_next/image?url=%2Fbase.jpeg&w=2048&q=75 2048w, /_next/image?url=%2Fbase.jpeg&w=3840&q=75 3840w"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-fit: contain; color: transparent;"
+        />
+      </main>
+      <aside
+        class="w-full"
+        id="main-layout-sidebar"
+      >
+        <nav
+          class="flex flex-col w-full h-full place-content-around items-end text-neutral-500 pr-2"
+        >
+          <button
+            class=" h-8 w-24 disabled:opacity-25"
+            disabled=""
+          >
+            <svg
+              class=""
+              height="100%"
+              viewBox="0 0 1024 1024"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M104.704 685.248a64 64 0 0 0 90.496 0l316.8-316.8l316.8 316.8a64 64 0 0 0 90.496-90.496L557.248 232.704a64 64 0 0 0-90.496 0L104.704 594.752a64 64 0 0 0 0 90.496z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <ul
+            class="flex w-full flex-col items-end space-y-3 pl-3"
+          />
+          <button
+            class=" h-8 w-24 disabled:opacity-25"
+            disabled=""
+          >
+            <svg
+              class=""
+              height="100%"
+              viewBox="0 0 1024 1024"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </nav>
+      </aside>
+    </section>
+  </div>
+</div>
+`;
