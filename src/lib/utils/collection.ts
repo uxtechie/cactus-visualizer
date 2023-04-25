@@ -20,3 +20,11 @@ export const compareObjectsBy = <T>(propName: keyof T): ComparatorFn<T> => {
   }
   return comparator
 }
+
+export const arrayMoveElement = <T>(
+  { source, fromIndex, toIndex }: { source: T[], fromIndex: number, toIndex: number }
+): void => {
+  const element = source[fromIndex]
+  source.splice(fromIndex, 1)
+  source.splice(toIndex, 0, element)
+}
