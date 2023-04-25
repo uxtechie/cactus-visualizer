@@ -23,7 +23,6 @@
       "@Hooks/*": ["./src/shared/hooks/*"],
       "@Models/*": ["./src/shared/models/*"],
       "@Utils/*": ["./src/lib/utils/*"],
-      "@Layout/*": ["./src/shared/layout/*"],
       "@Styles/*": ["./src/styles/*"],
       "@Services/*": ["./src/services/*"],
       "@Constants/*": ["./src/shared/constants/*"],

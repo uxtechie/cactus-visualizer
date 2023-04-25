@@ -17,7 +17,6 @@ const config = {
     '^@Hooks/(.*)$': '<rootDir>/src/shared/hooks/$1',
     '^@Models/(.*)$': '<rootDir>/src/shared/models/$1',
     '^@Utils/(.*)$': '<rootDir>/src/lib/utils/$1',
-    '^@Layout/(.*)$': '<rootDir>/src/shared/layout/$1',
     '^@Styles/(.*)$': '<rootDir>/src/styles/$1',
     '^@Services/(.*)$': '<rootDir>/src/services/$1',
     '^@Constants/(.*)$': '<rootDir>/src/shared/constants/$1',
