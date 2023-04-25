@@ -4,7 +4,7 @@ import { AppErrorMessage } from '@Constants/AppErrorMessage'
 import { PointModel, getPointList } from '@Models/point'
 import { MaterialModel, getMaterialList } from '@Models/material'
 import { MainLayout } from '@Layouts/MainLayout'
-import { Scene } from '@Modules/Scene'
+// import { Scene } from '@Modules/Scene'
 import { MaterialsPaginator } from '@Modules/MaterialsPaginator'
 import { PointMaterialProxy } from '@Types'
 import { compareObjectsBy } from '@Utils/collection'
@@ -60,14 +60,15 @@ const Home: FC<HomeStaticProps> = ({ pointList, error: pointError }) => {
           materialList={materialList}
                  />}
       >
-        <Scene
+        {/* <Scene
           selectPointHandler={setSelectedPoint}
           selectedPoint={selectedPoint}
           loadingPoint={loadingPoint}
           setLoadingPoint={setLoadingPoint}
           pointList={pointList}
           pointMaterialProxy={pointMaterialProxy}
-        />
+        /> */}
+        Hello!!!
       </MainLayout>
       )
 }
