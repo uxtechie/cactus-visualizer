@@ -5,7 +5,7 @@ import { TouchButton } from './components/TouchButton'
 import { GenericItemHandler, PointMaterialProxy } from '@Types'
 import { MaterialLayers } from './components/MaterialLayers'
 
-export interface SceneProps {
+export interface PlaygroundProps {
   selectPointHandler: GenericItemHandler<PointModel>
   selectedPoint?: PointModel
   loadingPoint?: boolean
@@ -14,7 +14,7 @@ export interface SceneProps {
   pointList: PointModel[]
 }
 
-const Scene: FC<SceneProps> = (
+const Playground: FC<PlaygroundProps> = (
   { pointList, selectPointHandler, selectedPoint, setLoadingPoint, pointMaterialProxy, loadingPoint = false }
 ) => {
   return (
@@ -50,4 +50,4 @@ const Scene: FC<SceneProps> = (
   )
 }
 
-export default Scene
+export default Playground
