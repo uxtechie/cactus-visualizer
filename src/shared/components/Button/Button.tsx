@@ -8,6 +8,7 @@ interface ButtonProps {
   className?: string
   icon?: keyof typeof iconsProxy
   size?: SizeOptions
+  pulse?: boolean
 }
 
 const sizeHeightProxy: Record<SizeOptions, string> = {
@@ -22,16 +23,22 @@ const sizeWidthProxy: Record<SizeOptions, string> = {
   lg: 'w-32'
 }
 
-const Button: FC<ButtonProps> = ({ onClick, disabled = false, size = 'md', icon = undefined, className = '' }) => {
+const Button: FC<ButtonProps> = (
+  { onClick, disabled = false, size = 'md', icon = undefined, pulse = false, className = '' }
+) => {
   const IconComponent = icon !== undefined ? iconsProxy[icon] : null
 
   return (
     <button
-      className={`${className} ${sizeHeightProxy[size]} ${sizeWidthProxy[size]}`}
+      className={`${className} ${sizeHeightProxy[size]} ${sizeWidthProxy[size]} disabled:opacity-25`}
       onClick={onClick}
       disabled={disabled}
     >
-      {(IconComponent != null) && <IconComponent height='100%' width='100%' />}
+      {(IconComponent != null) && <IconComponent
+        className={`${!disabled && pulse ? 'animate-bounce' : ''}`}
+        height='100%'
+        width='100%'
+                                  />}
     </button>
   )
 }
