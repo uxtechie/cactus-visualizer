@@ -5,7 +5,6 @@ import { PointModel, getPointList } from '@Models/point'
 import { MaterialModel } from '@Models/material'
 import { MainLayout } from '@Layouts/MainLayout'
 import { MaterialsPaginator } from '@Modules/MaterialsPaginator'
-import { PointMaterialProxy } from '@Types'
 import { Playground } from '@Modules/Playground'
 
 interface HomeStaticProps {
@@ -17,17 +16,10 @@ const Home: FC<HomeStaticProps> = ({ pointList, fetchPointsError }) => {
   const [selectedPoint, setSelectedPoint] = useState<PointModel>()
   const [loadingPoint, setLoadingPoint] = useState(false)
 
-  const [pointMaterialProxy, setPointMaterialProxy] = useState<PointMaterialProxy>({})
-
   const selectMaterialHandler = (material: MaterialModel): void => {
     if (selectedPoint === undefined) {
       throw new Error('No point selected')
     }
-
-    setPointMaterialProxy({
-      ...pointMaterialProxy,
-      [selectedPoint.id]: material
-    })
 
     setLoadingPoint(true)
   }
@@ -36,11 +28,7 @@ const Home: FC<HomeStaticProps> = ({ pointList, fetchPointsError }) => {
     ? <p>{`error message: ${fetchPointsError}`}</p>
     : (
       <MainLayout
-        sideBar={<MaterialsPaginator
-          selectedPoint={selectedPoint}
-          selectMaterialHandler={selectMaterialHandler}
-          pointMaterialProxy={pointMaterialProxy}
-                 />}
+        sideBar={<MaterialsPaginator selectedPoint={selectedPoint} />}
       >
         <Playground
           selectPointHandler={setSelectedPoint}
@@ -48,13 +36,14 @@ const Home: FC<HomeStaticProps> = ({ pointList, fetchPointsError }) => {
           loadingPoint={loadingPoint}
           setLoadingPoint={setLoadingPoint}
           pointList={pointList}
-          pointMaterialProxy={pointMaterialProxy}
         />
       </MainLayout>
       )
 }
 
-export const getStaticProps: GetStaticProps<HomeStaticProps> = async (context) => {
+export const getStaticProps: GetStaticProps<HomeStaticProps> = async (
+  context
+) => {
   const props: HomeStaticProps = {
     pointList: []
   }

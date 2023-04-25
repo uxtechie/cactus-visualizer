@@ -1,19 +1,18 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, useContext } from 'react'
 import { PointModel } from '@Models/point'
 import { MaterialModel, getMaterialList } from '@Models/material'
 import { MaterialCard } from './components/MaterialCard'
 import { DEFAULT_PAGE_SIZE } from '@/src/appConfig'
-import { GenericItemHandler, PointMaterialProxy } from '@Types'
+import { PointMaterialProxy } from '@Types'
 import { Button } from '@Components/Button'
 import { paginate } from '@Utils/collection'
 import { compareObjectsBy } from '@Utils/collection'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
+import { PointMaterialContext } from '@/src/shared/contexts/PointMaterialContext'
 
 interface MaterialsPaginatorProps {
   pageSize?: number
   selectedPoint?: PointModel
-  pointMaterialProxy: PointMaterialProxy
-  selectMaterialHandler: GenericItemHandler<MaterialModel>
 }
 
 const DEFAULT_INITIAL_PAGE = 1
@@ -21,11 +20,11 @@ const DEFAULT_INITIAL_PAGE = 1
 const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   pageSize = DEFAULT_PAGE_SIZE,
   selectedPoint,
-  selectMaterialHandler,
-  pointMaterialProxy
 }) => {
   const [materialList, setMaterialList] = useState<MaterialModel[]>([])
   const [fetchMaterialsError, setError] = useState<AppErrorMessage | undefined>()
+
+  const {pointMaterialProxy, setPointMaterialProxy} = useContext(PointMaterialContext)
 
   useEffect(() => {
     if (selectedPoint === undefined) {
@@ -56,6 +55,17 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   const previousPageAvailable = currentPage > 1
 
   const nextPageAvailable = currentPage < Math.ceil(materialList.length / pageSize)
+
+  const selectMaterialHandler = (material: MaterialModel) => {
+    if (selectedPoint === undefined) {
+      throw new Error('missing selectedPoint')
+    }
+
+    setPointMaterialProxy({
+      ...pointMaterialProxy,
+      [selectedPoint.id]: material
+    })
+  }
 
   return fetchMaterialsError ?
     <p>{`error message: ${fetchMaterialsError}`}</p>
