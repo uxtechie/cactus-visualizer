@@ -3,10 +3,9 @@ import { GetStaticProps } from 'next'
 import { AppErrorMessage } from '@Constants/AppErrorMessage'
 import { PointModel, getPointList } from '@Models/point'
 import { MaterialModel, getMaterialList } from '@Models/material'
-
-import { Scene } from 'src/modules/Scene'
-import { MaterialsPaginator } from 'src/modules/MaterialsPaginator'
-import MainLayout, { MainLayoutProps } from 'src/shared/layouts/MainLayout/MainLayout'
+import { MainLayout } from '@Layouts/MainLayout'
+import { Scene } from '@Modules/Scene'
+import { MaterialsPaginator } from '@Modules/MaterialsPaginator'
 import { PointMaterialProxy } from '@Types'
 import { compareObjectsBy } from '@Utils/collection'
 
@@ -15,7 +14,7 @@ interface HomeStaticProps {
   error?: AppErrorMessage
 }
 
-const Home: FC<MainLayoutProps & HomeStaticProps> = ({ pointList, error: pointError }) => {
+const Home: FC<HomeStaticProps> = ({ pointList, error: pointError }) => {
   const [selectedPoint, setSelectedPoint] = useState<PointModel>()
   const [loadingPoint, setLoadingPoint] = useState(false)
 
