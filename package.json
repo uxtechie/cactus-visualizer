@@ -46,7 +46,7 @@
     "project": "./tsconfig.json"
   },
   "engines": {
-    "node": ">=16",
-    "pnpm": ">=7.9"
+    "node": "18.16.X",
+    "pnpm": "8.3.X"
   }
 }
