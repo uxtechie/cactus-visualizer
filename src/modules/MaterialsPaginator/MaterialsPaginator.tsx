@@ -21,6 +21,8 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   pageSize = DEFAULT_PAGE_SIZE,
   selectedPoint
 }) => {
+  const [currentPage, setCurrentPage] = useState(DEFAULT_INITIAL_PAGE)
+
   const { pointMaterialProxy, setPointMaterialProxy } = useContext(PointMaterialProxyContext)
   const { setLoadingPoint } = useContext(LoadingPointContext)
 
@@ -41,14 +43,15 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
       .catch(() => setError(AppErrorMessage.GetMaterialsFailed))
   }, [selectedPoint])
 
-  const [currentPage, setCurrentPage] = useState(_getInitialPage(
-    pointMaterialProxy, materialList, pageSize, selectedPoint))
+  console.log('currentPage II', currentPage)
 
-  const currentPageMaterialItems = paginate({
+  const currentPageMaterialList = paginate({
     itemList: materialList,
     pageSize,
     currentPage
   })
+
+  console.log('currentPageMaterials', currentPageMaterialList)
 
   const previousPageAvailable = currentPage > 1
 
@@ -81,7 +84,7 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
         />
 
         <ul className='flex w-full flex-col items-end space-y-3 pl-3'>
-          {currentPageMaterialItems.map((material, index) => <MaterialCard
+          {currentPageMaterialList.map((material, index) => <MaterialCard
             key={index} material={material}
             onClickHandler={selectMaterialHandler}
             selected={
@@ -125,7 +128,7 @@ const _getInitialPage = (
     return DEFAULT_INITIAL_PAGE
   }
 
-  return Math.ceil(selectedMaterialIndex + 1 / pageSize)
+  return Math.floor(selectedMaterialIndex + 1 / pageSize)
 }
 
 const _getSelectedMaterialId = (
