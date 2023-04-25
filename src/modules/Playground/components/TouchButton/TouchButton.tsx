@@ -23,13 +23,15 @@ const TouchButton: FC<TouchButtonProps> = ({ point, onClickHandler, loading = fa
       `}
       onClick={() => onClickHandler(point)}
     >
-      <span className='relative w-full h-full flex items-center justify-center'>
+      <span className={`
+        ${loading ? 'animate-bounce' : ''}
+        relative w-full h-full flex items-center justify-center
+      `}>
         <span
           className='absolute w-full h-full rounded-full outline bg-neutral-800 outline-neutral-800 opacity-40'
         />
         <IconFingerprint
           className={`
-          ${loading ? 'animate-pulse' : ''}
           w-full h-full text-white p-1 rotate-12 border-2 rounded-full
           lg:p-1.5
           `}
