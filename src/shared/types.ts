@@ -1,4 +1,4 @@
-import { MaterialModel } from '@Models/material'
+import type { MaterialModel } from '@Models/material'
 
 export type GenericVoidHandler = () => void
 export type GenericItemHandler<T> = (item: T) => void
