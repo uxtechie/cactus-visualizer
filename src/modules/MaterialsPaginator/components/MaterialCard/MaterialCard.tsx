@@ -38,6 +38,8 @@ const MaterialCard: FC<MaterialCardProps> = (
           // optimize image performance:
           sizes='10vw'
           fill
+          placeholder='blur'
+          blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII='
           onLoadingComplete={() => setPreviewLoaded(true)}
         />
       </button>
