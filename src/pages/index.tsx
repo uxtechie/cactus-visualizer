@@ -21,7 +21,7 @@ const Home: FC<HomeStaticProps> = ({ pointList, fetchPointsError }) => {
         sideBar={<MaterialsPaginator selectedPoint={selectedPoint} />}
       >
         <Playground
-          selectPointHandler={setSelectedPoint}
+          setSelectedPoint={setSelectedPoint}
           selectedPoint={selectedPoint}
           pointList={pointList}
         />

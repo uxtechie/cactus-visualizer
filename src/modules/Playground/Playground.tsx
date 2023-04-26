@@ -7,17 +7,26 @@ import { MaterialLayers } from './components/MaterialLayers'
 import { PointMaterialProxyContext } from '@Contexts/PointMaterialProxyContext'
 import { LoadingPointContext } from '@Contexts/LoadingPointContext'
 
-export interface PlaygroundProps {
-  selectPointHandler: GenericItemHandler<PointModel>
+interface PlaygroundProps {
+  setSelectedPoint: GenericItemHandler<PointModel>
   selectedPoint?: PointModel
   pointList: PointModel[]
 }
 
 const Playground: FC<PlaygroundProps> = (
-  { pointList, selectPointHandler, selectedPoint }
+  { pointList, setSelectedPoint, selectedPoint }
 ) => {
   const { pointMaterialProxy } = useContext(PointMaterialProxyContext)
   const { loadingPoint } = useContext(LoadingPointContext)
+
+  const selectPointHandler = (newSelectedPoint: PointModel): void => {
+    // nothing changes
+    if (newSelectedPoint.id === selectedPoint?.id) {
+      return
+    }
+
+    setSelectedPoint(newSelectedPoint)
+  }
 
   return (
     <>
@@ -43,7 +52,7 @@ const Playground: FC<PlaygroundProps> = (
         <TouchButton
           key={index}
           point={point}
-          loading={loadingPoint && selectedPoint !== undefined && selectedPoint.id === point.id}
+          loading={loadingPoint && selectedPoint?.id === point.id}
           onClickHandler={selectPointHandler}
         />
       ))}
