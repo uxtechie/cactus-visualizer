@@ -29,6 +29,8 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
   const [materialList, setMaterialList] = useState<MaterialModel[]>([])
   const [fetchMaterialsError, setError] = useState<AppErrorMessage | undefined>()
 
+  const selectedMaterialId = _getSelectedMaterialId(pointMaterialProxy, selectedPoint)
+
   useEffect(() => {
     if (selectedPoint === undefined) {
       return
@@ -36,11 +38,11 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
 
     getMaterialList(selectedPoint.id)
       .then((materialList) => {
-        const sortedMaterials = materialList.sort(compareObjectsBy('name'))
+        materialList.sort(compareObjectsBy('name'))
+        _moveSelectedMaterialFirst(materialList, selectedMaterialId)
 
-        _moveSelectedMaterialFirst(pointMaterialProxy, sortedMaterials, selectedPoint)
         setCurrentPage(DEFAULT_INITIAL_PAGE)
-        setMaterialList(sortedMaterials)
+        setMaterialList(materialList)
       })
       .catch(() => setError(AppErrorMessage.GetMaterialsFailed))
   }, [selectedPoint])
@@ -55,23 +57,28 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
 
   const nextPageAvailable = currentPage < Math.ceil(materialList.length / pageSize)
 
-  const selectMaterialHandler = (material: MaterialModel): void => {
+  const selectMaterialHandler = (newSelectedMaterial: MaterialModel): void => {
     if (selectedPoint === undefined) {
       throw new Error('No point selected')
+    }
+
+    // nothing changes
+    if (newSelectedMaterial.id === selectedMaterialId) {
+      return
     }
 
     setLoadingPoint(true)
 
     setPointMaterialProxy({
       ...pointMaterialProxy,
-      [selectedPoint.id]: material
+      [selectedPoint.id]: newSelectedMaterial
     })
   }
 
   return fetchMaterialsError
     ? <p>{`error message: ${fetchMaterialsError}`}</p>
     : (
-      <nav className='flex flex-col w-full h-full place-content-around items-end text-neutral-500 pr-2'>
+      <nav className='flex flex-col w-full h-full place-content-around items-end text-white pr-2'>
         <Button
           icon='arrowUp'
           onClick={() => {
@@ -86,7 +93,7 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
             key={index} material={material}
             onClickHandler={selectMaterialHandler}
             selected={
-            material.id === _getSelectedMaterialId(pointMaterialProxy, selectedPoint)
+            material.id === selectedMaterialId
           }
                                                             />
           )}
@@ -98,6 +105,7 @@ const MaterialsPaginator: FC<MaterialsPaginatorProps> = ({
             setCurrentPage(currentPage + 1)
           }}
           disabled={!nextPageAvailable}
+          pulse={nextPageAvailable}
         />
       </nav>
       )
@@ -107,12 +115,9 @@ export default MaterialsPaginator
 
 // private helpers
 const _moveSelectedMaterialFirst = (
-  pointMaterialProxy: PointMaterialProxy,
   materialList: MaterialModel[],
-  selectedPoint?: PointModel
+  selectedMaterialId?: string
 ): void => {
-  const selectedMaterialId = _getSelectedMaterialId(pointMaterialProxy, selectedPoint)
-
   if (selectedMaterialId === undefined) {
     return
   }
@@ -120,10 +125,6 @@ const _moveSelectedMaterialFirst = (
   const selectedMaterialIndex = materialList.findIndex(
     (material) => material.id === selectedMaterialId
   )
-
-  if (selectedMaterialIndex === -1) {
-    return
-  }
 
   arrayMoveElement({
     source: materialList,
@@ -142,5 +143,5 @@ const _getSelectedMaterialId = (
 
   const selectedMaterial = pointMaterialProxy[selectedPoint.id]
 
-  return selectedMaterial !== undefined ? selectedMaterial.id : undefined
+  return selectedMaterial?.id
 }
