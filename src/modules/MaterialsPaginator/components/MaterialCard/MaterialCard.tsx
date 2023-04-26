@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import Image from 'next/image'
 import { MaterialModel } from '@Models/material'
 import { GenericItemHandler } from '@Types'
@@ -12,6 +12,8 @@ interface MaterialCardProps {
 const MaterialCard: FC<MaterialCardProps> = (
   { material, selected = false, onClickHandler }
 ) => {
+  const [previewLoaded, setPreviewLoaded] = useState(false)
+
   const { materialPreview, name } = material
 
   // FIXME
@@ -19,7 +21,7 @@ const MaterialCard: FC<MaterialCardProps> = (
 
   return (
     <li className={`flex flex-1 ${selected ? 'w-full' : 'w-fit'} border-2 bg-neutral-100 border-neutral-100 rounded-[5px]`}>
-      {selected && (
+      {selected && previewLoaded && (
         <span
           className='flex-auto text-neutral-600 text-center place-self-center text-sm lg:text-lg'
         >
@@ -36,6 +38,7 @@ const MaterialCard: FC<MaterialCardProps> = (
           // optimize image performance:
           sizes='10vw'
           fill
+          onLoadingComplete={() => setPreviewLoaded(true)}
         />
       </button>
     </li>
