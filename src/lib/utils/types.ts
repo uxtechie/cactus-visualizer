@@ -6,4 +6,10 @@ export interface PaginateProps<T> {
   currentPage: number
 }
 
+export interface PaginateState<T> {
+  currentPageItems: T[]
+  previousPageAvailable: boolean
+  nextPageAvailable: boolean
+}
+
 export type ComparatorFn<T> = (first: T, second: T) => ComparatorReturnValues

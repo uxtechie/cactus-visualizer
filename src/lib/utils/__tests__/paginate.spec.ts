@@ -27,26 +27,41 @@ const defaultPaginateConfig: PaginateProps<typeof fakeItemList[0]> = {
 
 describe('paginate', () => {
   it('returns the requested items number from list, page 1', () => {
-    expect(paginate(defaultPaginateConfig)).toEqual([
+    expect(paginate(defaultPaginateConfig)).toEqual(
       {
-        name: 'Item 1'
-      },
-      {
-        name: 'Item 2'
-      }
-    ])
+        currentPageItems: [
+          {
+            name: 'Item 1'
+          },
+          {
+            name: 'Item 2'
+          }
+        ],
+        previousPageAvailable: false,
+        nextPageAvailable: true
+      })
   })
   it('returns the requested items number from list, last page', () => {
     expect(paginate({ ...defaultPaginateConfig, currentPage: 3 })
-    ).toEqual([
+    ).toEqual(
       {
-        name: 'Item 5'
-      }
-    ])
+        currentPageItems: [
+          {
+            name: 'Item 5'
+          }
+        ],
+        previousPageAvailable: true,
+        nextPageAvailable: false
+      })
   })
   it('returns empty list if there are not enough items', () => {
     expect(paginate({ ...defaultPaginateConfig, currentPage: 4 })
-    ).toEqual([])
+    ).toEqual(
+      {
+        currentPageItems: [],
+        previousPageAvailable: true,
+        nextPageAvailable: false
+      })
   })
   it('throw error if pageSize is less than 1 number', () => {
     expect(() => paginate({ ...defaultPaginateConfig, pageSize: 0 })

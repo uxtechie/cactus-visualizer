@@ -1,14 +1,17 @@
 import { ComparatorReturnValues } from './enums'
-import { ComparatorFn, PaginateProps } from './types'
+import { ComparatorFn, PaginateProps, PaginateState } from './types'
 
 export const paginate = <T>(
   { itemList, pageSize, currentPage }: PaginateProps<T>
-): T[] => {
+): PaginateState<T> => {
   if (pageSize <= 0 || currentPage <= 0) {
     throw new Error('pageSize and currentPage must be greater than 0')
   }
-
-  return itemList.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+  return {
+    currentPageItems: itemList.slice((currentPage - 1) * pageSize, currentPage * pageSize),
+    previousPageAvailable: currentPage > 1,
+    nextPageAvailable: currentPage < Math.ceil(itemList.length / pageSize)
+  }
 }
 
 export const compareObjectsBy = <T>(propName: keyof T): ComparatorFn<T> => {

@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<HomeStaticProps> = async (
   try {
     props.pointList = await getPointList()
   } catch (error) {
-    props.fetchPointsError = AppErrorMessage.GetPointsFailed
+    props.fetchPointsError = AppErrorMessage.FETCH_POINTS_FAILED
   }
 
   return { props, revalidate: 100 }

@@ -30,7 +30,7 @@ exports[`renders homepage unchanged 1`] = `
         id="main-layout-sidebar"
       >
         <nav
-          class="flex flex-col w-full h-full place-content-around items-end text-neutral-500 pr-2"
+          class="flex flex-col w-full h-full place-content-around items-end text-white pr-2"
         >
           <button
             class=" h-8 w-24 disabled:opacity-25"

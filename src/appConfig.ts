@@ -1,1 +1,1 @@
-export const DEFAULT_PAGE_SIZE = 2
+export const MATERIALS_PAGE_SIZE = 2
