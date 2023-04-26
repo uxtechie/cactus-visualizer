@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { MaterialModel } from '@Models/material'
 import { GenericItemHandler } from '@Types'
 
-export interface MaterialCardProps {
+interface MaterialCardProps {
   material: MaterialModel
   selected?: boolean
   onClickHandler: GenericItemHandler<MaterialModel>

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { LoadingPointContext } from '@Contexts/LoadingPointContext'
 import { MaterialModel } from '@Models/material'
 
-export interface MaterialLayersProps {
+interface MaterialLayersProps {
   material: MaterialModel
 }
 

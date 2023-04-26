@@ -1,6 +1,6 @@
 import { ReactNode, FC } from 'react'
 
-export interface MainLayoutProps {
+interface MainLayoutProps {
   children: ReactNode
   sideBar?: ReactNode
 }
