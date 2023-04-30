@@ -4,6 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "next export",
+    "tauri": "tauri",
     "lint:types": "tsc --project tsconfig.json",
     "lint": "ts-standard",
     "lint:audit": "pnpm audit",
@@ -20,6 +22,7 @@
     "sharp": "0.32.X"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "1.X.X",
     "@testing-library/jest-dom": "5.16.X",
     "@testing-library/react": "14.0.X",
     "@testing-library/user-event": "14.4.X",

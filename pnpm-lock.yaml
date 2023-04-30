@@ -9,7 +9,7 @@ dependencies:
     version: 9.20.0
   next:
     specifier: latest
-    version: 13.3.1(@babel/core@7.21.4)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.0)
+    version: 13.3.2(@babel/core@7.21.4)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.0)
   react:
     specifier: 18.2.X
     version: 18.2.0
@@ -21,6 +21,9 @@ dependencies:
     version: 0.32.0
 
 devDependencies:
+  '@tauri-apps/cli':
+    specifier: ^1.2.3
+    version: 1.2.3
   '@testing-library/jest-dom':
     specifier: 5.16.X
     version: 5.16.0
@@ -1193,12 +1196,12 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
-  /@next/env@13.3.1:
-    resolution: {integrity: sha512-EDtCoedIZC7JlUQ3uaQpSc4aVmyhbLHmQVALg7pFfQgOTjgSnn7mKtA0DiCMkYvvsx6aFb5octGMtWrOtGXW9A==}
+  /@next/env@13.3.2:
+    resolution: {integrity: sha512-W+RJPtDj8PhOmZFi0MMhFoyWCz4tJeDEm7WtTTKflD+fgvmxpuOwxfQ2RWMz2gwnz6gL6hCuXtCtPpBBHDB7rg==}
     dev: false
 
-  /@next/swc-darwin-arm64@13.3.1:
-    resolution: {integrity: sha512-UXPtriEc/pBP8luSLSCZBcbzPeVv+SSjs9cH/KygTbhmACye8/OOXRZO13Z2Wq1G0gLmEAIHQAOuF+vafPd2lw==}
+  /@next/swc-darwin-arm64@13.3.2:
+    resolution: {integrity: sha512-Wa5o2EbkBP0NcUM13sEjzGoB86YTZWUfoqbbVB7gs9RJAy8KkIoGNoLV7K55fru7GNgHsRMga3j1FadjJJWQYg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -1206,8 +1209,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-darwin-x64@13.3.1:
-    resolution: {integrity: sha512-lT36yYxosCfLtplFzJWgo0hrPu6/do8+msgM7oQkPeohDNdhjtjFUgOOwdSnPublLR6Mo2Ym4P/wl5OANuD2bw==}
+  /@next/swc-darwin-x64@13.3.2:
+    resolution: {integrity: sha512-mSk/rSKIo/VMTQa0t8DMELsNjjyYHMbX0q+MK7+SoWysiA5KrU0MQ2h8DUPf2T5tmQjyaUpX49l4j/dr2jovBA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -1215,8 +1218,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-arm64-gnu@13.3.1:
-    resolution: {integrity: sha512-wRb76nLWJhonH8s3kxC/1tFguEkeOPayIwe9mkaz1G/yeS3OrjeyKMJsb4+Kdg0zbTo53bNCOl59NNtDM7yyyw==}
+  /@next/swc-linux-arm64-gnu@13.3.2:
+    resolution: {integrity: sha512-+5OC61uF33s0GdiGK2D5436Z2BqE8tJnlC6csTcBvCKQyvLsp6H5sPND5A1D2p/Gzh0mIGV/5vqfQ8yy+akOjw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -1224,8 +1227,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-arm64-musl@13.3.1:
-    resolution: {integrity: sha512-qz3BzjJRZ16Iq/jrp+pjiYOc0jTjHlfmxQmZk9x/+5uhRP6/eWQSTAPVJ33BMo6oK5O5N4644OgTAbzXzorecg==}
+  /@next/swc-linux-arm64-musl@13.3.2:
+    resolution: {integrity: sha512-TZ7c7iZ3MB8yRBukbNVNzKSX/k9DKtGaEuofIZBWp+o4e29e8iuJaej9UUCNUkN6L/117/AEnlpH1c7yfvSj8Q==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -1233,8 +1236,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-x64-gnu@13.3.1:
-    resolution: {integrity: sha512-6mgkLmwlyWlomQmpl21I3hxgqE5INoW4owTlcLpNsd1V4wP+J46BlI/5zV5KWWbzjfncIqzXoeGs5Eg+1GHODA==}
+  /@next/swc-linux-x64-gnu@13.3.2:
+    resolution: {integrity: sha512-aVoiakznPxGFIMcNlnY4HlZ4Be6oGhthaLSoXiVeplAgHLzHU2UqPMWqB/8/1TfMdWwISmwH4hb6DcdQ/PzTyA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -1242,8 +1245,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-x64-musl@13.3.1:
-    resolution: {integrity: sha512-uqm5sielhQmKJM+qayIhgZv1KlS5pqTdQ99b+Z7hMWryXS96qE0DftTmMZowBcUL6x7s2vSXyH5wPtO1ON7LBg==}
+  /@next/swc-linux-x64-musl@13.3.2:
+    resolution: {integrity: sha512-D2CsQZkBq/hcdcQkMXrG2huLJDPhyMuO5J8ZOc5fZtI8D/UxcRjWWK8yw+JgbOdZ3D9IMJSD3cd5QMx4VEI+Kg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -1251,8 +1254,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-win32-arm64-msvc@13.3.1:
-    resolution: {integrity: sha512-WomIiTj/v3LevltlibNQKmvrOymNRYL+a0dp5R73IwPWN5FvXWwSELN/kiNALig/+T3luc4qHNTyvMCp9L6U5Q==}
+  /@next/swc-win32-arm64-msvc@13.3.2:
+    resolution: {integrity: sha512-mjiWKEf9i1JAVePOa0Uw7c5c9Dp5D0LrevwIg31SNEpp8NwTr+ifHQzgf/ELNBWMxMLyiZiywWbYdcIjoa5y4A==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -1260,8 +1263,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-win32-ia32-msvc@13.3.1:
-    resolution: {integrity: sha512-M+PoH+0+q658wRUbs285RIaSTYnGBSTdweH/0CdzDgA6Q4rBM0sQs4DHmO3BPP0ltCO/vViIoyG7ks66XmCA5g==}
+  /@next/swc-win32-ia32-msvc@13.3.2:
+    resolution: {integrity: sha512-fee18wB9lfAnyAwJbyqN/PhcXWH1lGpBWJVF0gTB8G8/eUU0Vlq524Qt1RCt0K0pxLsSEhw1wEpGvqYYrAdQTA==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
@@ -1269,8 +1272,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-win32-x64-msvc@13.3.1:
-    resolution: {integrity: sha512-Sl1F4Vp5Z1rNXWZYqJwMuWRRol4bqOB6+/d7KqkgQ4AcafKPN1PZmpkCoxv4UFHtFNIB7EotnuIhtXu3zScicQ==}
+  /@next/swc-win32-x64-msvc@13.3.2:
+    resolution: {integrity: sha512-eE6hPs0vtM08UB3B8YM1KIBOYZHJPF7NtWBdU0EIvRJ+R197+3W3VraaVBMMg0zy0e2e1jKgQPypakxN+vfZcw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -1358,11 +1361,108 @@ packages:
       '@sinonjs/commons': 2.0.0
     dev: true
 
-  /@swc/helpers@0.5.0:
-    resolution: {integrity: sha512-SjY/p4MmECVVEWspzSRpQEM3sjR17sP8PbGxELWrT+YZMBfiUyt1MRUNjMV23zohwlG2HYtCQOsCwsTHguXkyg==}
+  /@swc/helpers@0.5.1:
+    resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
       tslib: 2.5.0
     dev: false
+
+  /@tauri-apps/cli-darwin-arm64@1.2.3:
+    resolution: {integrity: sha512-phJN3fN8FtZZwqXg08bcxfq1+X1JSDglLvRxOxB7VWPq+O5SuB8uLyssjJsu+PIhyZZnIhTGdjhzLSFhSXfLsw==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-darwin-x64@1.2.3:
+    resolution: {integrity: sha512-jFZ/y6z8z6v4yliIbXKBXA7BJgtZVMsITmEXSuD6s5+eCOpDhQxbRkr6CA+FFfr+/r96rWSDSgDenDQuSvPAKw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-arm-gnueabihf@1.2.3:
+    resolution: {integrity: sha512-C7h5vqAwXzY0kRGSU00Fj8PudiDWFCiQqqUNI1N+fhCILrzWZB9TPBwdx33ZfXKt/U4+emdIoo/N34v3TiAOmQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-arm64-gnu@1.2.3:
+    resolution: {integrity: sha512-buf1c8sdkuUzVDkGPQpyUdAIIdn5r0UgXU6+H5fGPq/Xzt5K69JzXaeo6fHsZEZghbV0hOK+taKV4J0m30UUMQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-arm64-musl@1.2.3:
+    resolution: {integrity: sha512-x88wPS9W5xAyk392vc4uNHcKBBvCp0wf4H9JFMF9OBwB7vfd59LbQCFcPSu8f0BI7bPrOsyHqspWHuFL8ojQEA==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-x64-gnu@1.2.3:
+    resolution: {integrity: sha512-ZMz1jxEVe0B4/7NJnlPHmwmSIuwiD6ViXKs8F+OWWz2Y4jn5TGxWKFg7DLx5OwQTRvEIZxxT7lXHi5CuTNAxKg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-x64-musl@1.2.3:
+    resolution: {integrity: sha512-B/az59EjJhdbZDzawEVox0LQu2ZHCZlk8rJf85AMIktIUoAZPFbwyiUv7/zjzA/sY6Nb58OSJgaPL2/IBy7E0A==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-win32-ia32-msvc@1.2.3:
+    resolution: {integrity: sha512-ypdO1OdC5ugNJAKO2m3sb1nsd+0TSvMS9Tr5qN/ZSMvtSduaNwrcZ3D7G/iOIanrqu/Nl8t3LYlgPZGBKlw7Ng==}
+    engines: {node: '>= 10'}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-win32-x64-msvc@1.2.3:
+    resolution: {integrity: sha512-CsbHQ+XhnV/2csOBBDVfH16cdK00gNyNYUW68isedmqcn8j+s0e9cQ1xXIqi+Hue3awp8g3ImYN5KPepf3UExw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli@1.2.3:
+    resolution: {integrity: sha512-erxtXuPhMEGJPBtnhPILD4AjuT81GZsraqpFvXAmEJZ2p8P6t7MVBifCL8LznRknznM3jn90D3M8RNBP3wcXTw==}
+    engines: {node: '>= 10'}
+    hasBin: true
+    optionalDependencies:
+      '@tauri-apps/cli-darwin-arm64': 1.2.3
+      '@tauri-apps/cli-darwin-x64': 1.2.3
+      '@tauri-apps/cli-linux-arm-gnueabihf': 1.2.3
+      '@tauri-apps/cli-linux-arm64-gnu': 1.2.3
+      '@tauri-apps/cli-linux-arm64-musl': 1.2.3
+      '@tauri-apps/cli-linux-x64-gnu': 1.2.3
+      '@tauri-apps/cli-linux-x64-musl': 1.2.3
+      '@tauri-apps/cli-win32-ia32-msvc': 1.2.3
+      '@tauri-apps/cli-win32-x64-msvc': 1.2.3
+    dev: true
 
   /@testing-library/dom@9.2.0:
     resolution: {integrity: sha512-xTEnpUKiV/bMyEsE5bT4oYA0x0Z/colMtxzUY8bKyPXBNLn/e0V4ZjBZkEhms0xE4pv9QsPfSRu9AWS4y5wGvA==}
@@ -4347,9 +4447,9 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next@13.3.1(@babel/core@7.21.4)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.0):
-    resolution: {integrity: sha512-eByWRxPzKHs2oQz1yE41LX35umhz86ZSZ+mYyXBqn2IBi2hyUqxBA88avywdr4uyH+hCJczegGsDGWbzQA5Rqw==}
-    engines: {node: '>=14.18.0'}
+  /next@13.3.2(@babel/core@7.21.4)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.0):
+    resolution: {integrity: sha512-82VuWoMGWFqGUwCEWcqkIhGgdRry+VKVBZ9KNte1Uk2byZKvPZrC5c62fYHrIhSf36YKY6m21hxdyDzn6MDHFA==}
+    engines: {node: '>=16.8.0'}
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -4368,8 +4468,8 @@ packages:
       sass:
         optional: true
     dependencies:
-      '@next/env': 13.3.1
-      '@swc/helpers': 0.5.0
+      '@next/env': 13.3.2
+      '@swc/helpers': 0.5.1
       busboy: 1.6.0
       caniuse-lite: 1.0.30001481
       postcss: 8.4.14
@@ -4378,15 +4478,15 @@ packages:
       sass: 1.62.0
       styled-jsx: 5.1.1(@babel/core@7.21.4)(react@18.2.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 13.3.1
-      '@next/swc-darwin-x64': 13.3.1
-      '@next/swc-linux-arm64-gnu': 13.3.1
-      '@next/swc-linux-arm64-musl': 13.3.1
-      '@next/swc-linux-x64-gnu': 13.3.1
-      '@next/swc-linux-x64-musl': 13.3.1
-      '@next/swc-win32-arm64-msvc': 13.3.1
-      '@next/swc-win32-ia32-msvc': 13.3.1
-      '@next/swc-win32-x64-msvc': 13.3.1
+      '@next/swc-darwin-arm64': 13.3.2
+      '@next/swc-darwin-x64': 13.3.2
+      '@next/swc-linux-arm64-gnu': 13.3.2
+      '@next/swc-linux-arm64-musl': 13.3.2
+      '@next/swc-linux-x64-gnu': 13.3.2
+      '@next/swc-linux-x64-musl': 13.3.2
+      '@next/swc-win32-arm64-msvc': 13.3.2
+      '@next/swc-win32-ia32-msvc': 13.3.2
+      '@next/swc-win32-x64-msvc': 13.3.2
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
