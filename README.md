@@ -7,7 +7,7 @@
 - Firebase
 - Tailwindcss
 
-## What we value?
+## Premises?
 
 - Simplicity of the solution
 - Organization and clean code
