@@ -31,7 +31,7 @@
     "autoprefixer": "10.4.X",
     "jest": "29.5.X",
     "jest-environment-jsdom": "29.5.X",
-    "postcss": "8.4.23",
+    "postcss": "8.4.31",
     "sass": "1.62.X",
     "tailwindcss": "3.3.X",
     "ts-standard": "12.0.X",
